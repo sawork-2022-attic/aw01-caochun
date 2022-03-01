@@ -12,6 +12,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 /**
  * This simulates a code page 437 ASCII terminal display.
  * @author Trystan Spangler
@@ -107,6 +109,8 @@ public class AsciiPanel extends JPanel {
     private int charHeight = 16;
     private String terminalFontFile = "cp437_9x16.png";
     private Color defaultBackgroundColor;
+
+    @Autowired
     private Color defaultForegroundColor;
     private int cursorX;
     private int cursorY;
@@ -257,6 +261,7 @@ public class AsciiPanel extends JPanel {
      * as the panel dimensions will most likely change
      * @param font
      */
+    @Autowired
     public void setAsciiFont(AsciiFont font)
     {
         if(this.asciiFont == font)
@@ -329,10 +334,10 @@ public class AsciiPanel extends JPanel {
         oldBackgroundColors = new Color[widthInCharacters][heightInCharacters];
         oldForegroundColors = new Color[widthInCharacters][heightInCharacters];
 
-        if(font == null) {
-        	font = AsciiFont.CP437_9x16;
-        }
-        setAsciiFont(font);
+        // if(font == null) {
+        // 	// font = AsciiFont.CP437_9x16;
+        // }
+        // setAsciiFont(font);
     }
     
     @Override
